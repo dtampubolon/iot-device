@@ -14,7 +14,7 @@ class SystemPerfromanceAdaptor(threading.Thread):
         self.period = period #Wake up every period of seconds
         self.enable = False
         
-    #When thread is started this method is called
+    #When thread is started, this method is called
     def run(self):
         while True:
             if  self.enable:
