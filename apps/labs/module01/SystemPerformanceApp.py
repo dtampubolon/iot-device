@@ -9,7 +9,7 @@ SPA = SystemPerformanceAdaptor.SystemPerfromanceAdaptor(1,"SPA-1", 8) #Create Sy
 SPA.daemon = True #Runs thread as a background task
 
 print("System performance app is starting as a daemon thread..")
-SPA.setEnable(True) #Enable SystemPerformanceAdaptor
+SPA.setEnable(True) #Enable SystemPerformanceAdaptor instance
 SPA.start() #Start SPA thread
 
 while (True): #Allow main thread to run indefinitely
