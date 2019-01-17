@@ -6,6 +6,7 @@ import threading
 import time
 
 class SystemPerfromanceAdaptor(threading.Thread):
+    #Constructor
     def __init__(self, threadID, name, period):
         threading.Thread.__init__(self)
         self.threadID = threadID
@@ -13,6 +14,7 @@ class SystemPerfromanceAdaptor(threading.Thread):
         self.period = period #Wake up every period of seconds
         self.enable = False
         
+    #When thread is started this method is called
     def run(self):
         while True:
             if  self.enable:
