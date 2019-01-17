@@ -12,6 +12,6 @@ print("System performance app is starting as a daemon thread..")
 SPA.setEnable(True) #Enable SystemPerformanceAdaptor
 SPA.start() #Start SPA thread
 
-while (True):
+while (True): #Allow main thread to run indefinitely
     sleep(1)
     pass
