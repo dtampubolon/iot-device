@@ -5,7 +5,8 @@ Lab Module 2
 NUID: 001400708
 CSYE6530 - Connected Devices
 
-This module simulates an app that runs the sensor emulators and connect to an SMTP client connector
+This module simulates an app that runs the sensor emulators and 
+connect to an SMTP client connector
 '''
 
 from time import sleep

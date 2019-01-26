@@ -12,9 +12,9 @@ from email.mime.text import MIMEText
 
 class SmtpClientConnector():
     '''
-    This class creates a connection to SMTP server and send messages through said server
+    This class creates a connection to SMTP server and 
+    send messages through said server
     '''
-
 
     def __init__(self):
         '''

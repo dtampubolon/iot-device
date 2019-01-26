@@ -13,10 +13,10 @@ from labs.common import SensorData
 
 class TempSensorEmulator(threading.Thread):
     '''
-    This class emulates a real temperature sensor by generating a random value between 0 - 30 degrees Celsius
+    This class emulates a real temperature sensor by 
+    generating a random value between 0 - 30 degrees Celsius
     '''
-
-
+    
     def __init__(self, period, threshold, connector):
         '''
         Constructor
