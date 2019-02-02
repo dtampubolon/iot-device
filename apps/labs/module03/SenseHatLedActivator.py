@@ -30,6 +30,7 @@ class SenseHatLedActivator(threading.Thread):
             if self.enableLed:
                 if self.displayMsg != None:
                     self.sh.show_message(str(self.displayMsg))
+                    self.setDisplayMessage(None)
                 else:
                     self.sh.show_message(str('R'))
                     

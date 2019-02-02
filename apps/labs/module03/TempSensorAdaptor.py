@@ -34,7 +34,6 @@ class TempSensorAdaptor(threading.Thread):
         
         self.sensorData = SensorData.SensorData()
         self.actuatorEmu = actuatorEmu #ActuatorEmulator instance
-        self.actuatorData = ActuatorData.ActuatorData()
         
         
         self.isPrevTempSet = False #Before the sensor adaptor is started, no previous temperature readings i.e. no average temp
@@ -65,30 +64,32 @@ class TempSensorAdaptor(threading.Thread):
                         print("Sending email alert...")
                         self.connector.publishMessage("Exceptional sensor data", self.sensorData)
                         
-                    if self.curTemp > self.nominalTemp:
-                        #Filling out actuator data and pass them to TempActuatorEmulator.
-                        self.actuatorData.updateTimeStamp()
-                        self.actuatorData.setCommand(1)
-                        self.actuatorData.setStatusCode(1)
-                        self.actuatorData.setErrorCode(0)                        
-                        self.actuatorData.setStateData("HIGH")
-                        self.actuatorData.setValue(self.curTemp)
-                        
-                        self.actuatorEmu.processMessage(self.actuatorData)
-            
+                        actuatorData = ActuatorData.ActuatorData()
+
+                        if self.curTemp > self.nominalTemp:
+                            #Filling out actuator data and pass them to TempActuatorEmulator.
+                            actuatorData.updateTimeStamp()
+                            actuatorData.setCommand(1)
+                            actuatorData.setStatusCode(1)
+                            actuatorData.setErrorCode(0)                        
+                            actuatorData.setStateData("HIGH")
+                            actuatorData.setValue(self.curTemp)
+                                
+                            self.actuatorEmu.processMessage(actuatorData)
                     
-                    elif self.curTemp < self.nominalTemp:
-                        self.actuatorData.updateTimeStamp()
-                        self.actuatorData.setCommand(2)
-                        self.actuatorData.setStatusCode(2)
-                        self.actuatorData.setErrorCode(0)                        
-                        self.actuatorData.setStateData("LOW")
-                        self.actuatorData.setValue(self.curTemp) 
+                            
+                        elif self.curTemp < self.nominalTemp:
+                            actuatorData.updateTimeStamp()
+                            actuatorData.setCommand(2)
+                            actuatorData.setStatusCode(2)
+                            actuatorData.setErrorCode(0)                        
+                            actuatorData.setStateData("LOW")
+                            actuatorData.setValue(self.curTemp) 
+                                
+                            self.actuatorEmu.processMessage(actuatorData)
                         
-                        self.actuatorEmu.processMessage(self.actuatorData)
-                    
-                    self.actuatorData.setStatusCode(0)
-                    time.sleep(self.period)
+                        actuatorData.setStatusCode(0)
+                time.sleep(self.period)
                     
     def setEnable(self, enable):
         self.enable = enable
