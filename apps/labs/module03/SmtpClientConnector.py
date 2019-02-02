@@ -3,6 +3,9 @@ Created on Jan 19, 2019
 
 @author: Doni Tampubolon
 '''
+import sys
+sys.path.append('/home/pi/workspace/iot-device/apps')
+
 import smtplib
 from labs.common import ConfigUtil
 from labs.common import ConfigConst

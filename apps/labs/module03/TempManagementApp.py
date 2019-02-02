@@ -8,6 +8,8 @@ Lab Module 3
 This module simulates an app that runs the sensor adaptors, actuators, and
 connect to an SMTP client connector
 '''
+import sys
+sys.path.append('/home/pi/workspace/iot-device/apps')
 
 from time import sleep
 from labs.module03 import TempSensorAdaptor

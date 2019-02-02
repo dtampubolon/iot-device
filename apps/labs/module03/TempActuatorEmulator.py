@@ -6,6 +6,8 @@ NUID: 001400708
 CSYE 6530 - Connected Devices
 Lab Module 3
 '''
+import sys
+sys.path.append('/home/pi/workspace/iot-device/apps')
 
 from sense_hat import SenseHat
 from labs.common import ActuatorData
