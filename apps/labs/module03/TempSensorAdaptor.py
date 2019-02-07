@@ -38,7 +38,6 @@ class TempSensorAdaptor(threading.Thread):
         self.sensorData = SensorData.SensorData()
         self.actuatorEmu = actuatorEmu #ActuatorEmulator instance
         
-        
         self.isPrevTempSet = False #Before the sensor adaptor is started, no previous temperature readings i.e. no average temp
         
         self.config = ConfigUtil.ConfigUtil(r'C:\Users\Doni Tampubolon\Documents\Grad School\CSYE6530\gitrepo\iot-device\apps\labs\data\ConnectedDevicesConfig.props')
