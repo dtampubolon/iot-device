@@ -21,7 +21,7 @@ enableMeasure = 0x08
 
 accelAddr = 0x1C # Address for IMU (Accelerometer)
 magAddr = 0x6A # Address for IMU (Magnetometer)
-pressAddr = 0x5C # Address for pressure sensore
+pressAddr = 0x5C # Address for pressure sensor
 humidAddr = 0x5F # Address for humidity sensor
 
 begAddr = 0x28 # beginning address
@@ -32,7 +32,7 @@ DEFAULT_RATE_IN_SEC = 5 # Interval in seconds between new data readings
 class I2CSenseHatAdaptor(threading.Thread):
     '''
     This class is an adaptor for a device (sensor/actuator) that connects via I2C
-    With this class, bytes of data can be written and read via I2C
+    With this class, bytes of data can be written and/or read via I2C
     '''
     rateInSec = DEFAULT_RATE_IN_SEC
 
@@ -68,22 +68,35 @@ class I2CSenseHatAdaptor(threading.Thread):
                 self.displayHumidityData()
                 
             sleep(self.rateInSec)
-            
+         
     def displayAccelerometerData(self):
+        '''
+        Read data from accelerometer and display it in console
+        '''
         data = i2cBus.read_i2c_block_data(accelAddr, 0x28, 6)
         print("Accelerometer block data: {}".format(data))
     
+    
     def displayMagnetometerData(self):
+        '''
+        Read data from magnetometer and display it in console
+        '''
         data = i2cBus.read_i2c_block_data(magAddr, 0x28, 24)
         print("Magnetometer block data: {}".format(data))
     
     def displayPressureData(self):
+        '''
+        Read data from pressure sensor and display it in console
+        '''
         lsb = i2cBus.read_i2c_block_data(pressAddr, 0x28,1)
         middlebits = i2cBus.read_i2c_block_data(pressAddr, 0x29,1)
         msb = i2cBus.read_i2c_block_data(pressAddr, 0x2A,1)
         print("Pressure block data: {}{}{}".format(msb,middlebits,lsb))
         
     def displayHumidityData(self):
+        '''
+        Read data from humidity sensor and display it in console
+        '''
         lsb = i2cBus.read_i2c_block_data(humidAddr, 0x28,1)
         msb = i2cBus.read_i2c_block_data(pressAddr, 0x28,1)
         print("Humidity block data: {}{}".format(msb,lsb))       
