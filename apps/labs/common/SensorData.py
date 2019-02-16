@@ -11,7 +11,7 @@ from datetime import datetime
 class SensorData():
     
     timeStamp = None #Time when an action is done
-    name = 'Sensor Data Name'
+    name = 'Temperature Data'
     curValue = 0 #Current value of reading
     avgValue = 0 #Average value of readings
     minValue = 0 #Minimum value of readings

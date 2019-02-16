@@ -79,7 +79,7 @@ class I2CSenseHatAdaptor(threading.Thread):
     
     def displayMagnetometerData(self):
         '''
-        Read data from magnetometer and display it in console
+        Read data from magnetometer and display it in  console
         '''
         data = i2cBus.read_i2c_block_data(magAddr, 0x28, 24)
         print("Magnetometer block data: {}".format(data))
