@@ -43,8 +43,9 @@ class DataUtil():
     '''
     This method converts from JSON into an ActuatorData object
     '''
-    def jsonToActuatorData(self, jsonData):
-        adDict = json.loads
+    def jsonToActuatorData(self, dataFile):
+        with open(dataFile, encoding='utf-8') as jsonData:
+            adDict = json.loads(jsonData.read())
         
         print(" decode [pre] --> " + str(adDict))
         
@@ -66,8 +67,9 @@ class DataUtil():
     This method converts from JSON into a SensorData object
 
     '''
-    def jsonToSensorData(self, jsonData):
-        sdDict = json.loads(jsonData)
+    def jsonToSensorData(self, dataFile):
+        with open(dataFile, encoding='utf-8') as jsonData:
+            sdDict = json.loads(jsonData.read())
         
         print(" decode [pre] --> " + str(sdDict))
         

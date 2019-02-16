@@ -8,6 +8,7 @@ CSYE6530 - Connected Devices
 import os
 
 from datetime import datetime
+from ctypes.test.test_pickling import name
 
 COMMAND_OFF = 0
 COMMAND_ON = 1
@@ -28,18 +29,25 @@ class ActuatorData():
     '''
     timeStamp = None
     name = 'Actuator Name Not set'
-    hasError = False
-    command = 0 #0 to keep temp, 1 to lower temp, 2 to raise temp
-    errCode = 0 
-    statusCode = 0 # 0 for normal, 1 for high temp, 2 for low temp
-    stateData = None
-    val = 0.0 #Value of current data
+    #hasError = False
+    #command = 0 #0 to keep temp, 1 to lower temp, 2 to raise temp
+    #errCode = 0 
+    #statusCode = 0 # 0 for normal, 1 for high temp, 2 for low temp
+    #stateData = None
+    #val = 0.0 #Value of current data
 
     def __init__(self):
         '''
         Constructor
         '''
         self.updateTimeStamp()
+        self.name = name
+        self.hasError = False
+        self.command = 0
+        self.errCode = 0
+        self.statusCode = 0
+        self.stateData = None
+        self.val = 0.0
     
     def getCommand(self):
         return self.command
