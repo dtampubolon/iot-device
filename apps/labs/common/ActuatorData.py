@@ -49,39 +49,66 @@ class ActuatorData():
         self.stateData = None
         self.val = 0.0
     
+    #This function returns the value of command
     def getCommand(self):
         return self.command
     
+    #This function returns the name of this ActuatorData instance
     def getName(self):
         return self.name
     
+    #This function returns the value of stateData
     def getStateData(self):
         return self.stateData
     
+    #This function returns the value of statusCode
     def getStatusCode(self):
         return self.statusCode
     
+    #This function returns the value of errCode
     def getErrorCode(self):
         return self.errCode
     
+    #This function returns the current/latest ActuatorData value
     def getValue(self):
         return self.val
     
+    #This returns the boolean value of hasError
     def hasError(self):
         return self.hasError
     
+    '''
+    This function sets the variable command
+    @param command: integer, 0 to keep temp, 1 to lower temp, 2 to raise temp
+    '''
     def setCommand(self, command):
         self.command = command
     
+    '''
+    This funciton sets the name of this ActuatorData instance
+    @param name: String
+    ''' 
     def setName(self, name):
         self.name = name
         
+    '''
+    This function sets the value of stateData
+    @param stateData: integer
+    '''     
     def setStateData(self, stateData):
         self.stateData = stateData
     
+    '''
+    This function sets the value of statusCode
+    @param statusCode: integer,  0 for normal, 1 for high temp, 2 for low temp
+    ''' 
     def setStatusCode(self, statusCode):
         self.statusCode = statusCode
-        
+    
+    '''
+    This function sets the value of errCode
+    @param errCode: integer
+    '''
     def setErrorCode(self, errCode):
         self.errCode = errCode
         
@@ -89,20 +116,30 @@ class ActuatorData():
             self.hasError = True
         else:
             self.hasError = False
-            
+    
+    '''
+    This funciton sets the value of Actuator data
+    @param val: float 
+    '''        
     def setValue(self, val):
         self.val = val
-        
+    
+    '''
+    This functions copies the values of the variables from an ActuatorData instance
+    @param data: ActuatorData
+    '''      
     def updateData(self, data):
         self.command = data.getCommand()
         self.statusCode = data.getStatusCode()
         self.errCode = data.getErrorCode()
         self.stateData = data.getStateData()
         self.val = data.getValue()
-        
+    
+    #This function updates the timeStamp    
     def updateTimeStamp(self):
         self.timeStamp = str(datetime.now())
-        
+    
+    #String formatter    
     def __str__(self):
         customStr = \
             str(self.name + ':' + \

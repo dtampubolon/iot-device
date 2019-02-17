@@ -24,7 +24,7 @@ class DataUtil():
             self.dataFile = dataFile
             
     '''
-    Attempts to load the config file using the name passed into
+    Attempts to load the json file using the name passed into
     the constructor.
     
     @param dataFile The name of the data file to load.
