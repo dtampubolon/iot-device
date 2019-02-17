@@ -29,6 +29,10 @@ class SmtpClientConnector():
 
         
     def publishMessage(self, topic, data):
+        '''
+        This function publishes an email through an SMTP connection with the SMTP mail server configured in ConnectedDevicesConfig.props
+        @param topic: String, data: String
+        '''
         host = self.config.getProperty(ConfigConst.SMTP_CLOUD_SECTION, ConfigConst.HOST_KEY)
         port = self.config.getProperty(ConfigConst.SMTP_CLOUD_SECTION, ConfigConst.PORT_KEY)
         fromAddr = self.config.getProperty(ConfigConst.SMTP_CLOUD_SECTION, ConfigConst.FROM_ADDRESS_KEY)

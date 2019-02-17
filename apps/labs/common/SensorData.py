@@ -36,6 +36,9 @@ class SensorData():
         self.totValue = 0
         self.sampleCount = 0
         
+    '''
+    This function adds new readings and updates member variables accordingly
+    '''
     def addValue(self, newVal):
         self.sampleCount += 1 #increment count
         
@@ -52,21 +55,27 @@ class SensorData():
         if (self.totValue != 0 and self.sampleCount > 0):
             self.avgValue = self.totValue / self.sampleCount
     
+    #This function returns the average of all the sensor readings
     def getAvgValue(self):
         return self.avgValue
     
+    #This function returns the maximum of all the sensor readings
     def getMaxValue(self):
         return self.maxValue
     
+    #This function returns the minimum of all the sensor readings
     def getMinValue(self):
         return self.minValue
     
+    #This function returns the current/latest reading
     def getValue(self):
         return self.curValue
     
+    #This function returns the name of this SensorData instance
     def setName(self, name):
         self.name = name
     
+    #String formatter
     def __str__(self):
         customStr = \
             str(self.name + ':' + \

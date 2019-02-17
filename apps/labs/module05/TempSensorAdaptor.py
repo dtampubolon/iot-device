@@ -50,7 +50,9 @@ class TempSensorAdaptor(threading.Thread):
         
         self.nominalTemp = float(self.config.getProperty(ConfigConst.CONSTRAINED_DEVICE, ConfigConst.NOMINAL_TEMP_KEY))
 
-        
+    '''
+    This function is run when the thread is started
+    '''        
     def run(self):
         while True:
             if self.enable:
