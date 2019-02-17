@@ -13,7 +13,7 @@ class DataUtil():
     This class converts data from and to JSON strings
     '''
     dataPath = r'C:\Users\Doni Tampubolon\Documents\Grad School\CSYE6530\gitrepo\iot-device\apps\labs\data'
-    dataFile = dataPath + '\\' +  'Data.json'
+    dataFile = dataPath + '\\' +  'Data.json' #File that contains json string
     isLoaded   = False
     
     def __init__(self, dataFile):

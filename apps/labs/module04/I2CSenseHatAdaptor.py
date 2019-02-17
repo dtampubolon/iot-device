@@ -54,11 +54,16 @@ class I2CSenseHatAdaptor(threading.Thread):
     def initI2CBus(self):
         print("Initializing I2C bus and enabling I2C addresses...")
         
-        i2cBus.write_quick(accelAddr)
-        i2cBus.write_quick(magAddr)
-        i2cBus.write_quick(pressAddr)
-        i2cBus.write_quick(humidAddr)
+        #i2cBus.write_quick(accelAddr)
+        #i2cBus.write_quick(magAddr)
+        #i2cBus.write_quick(pressAddr)
+        #i2cBus.write_quick(humidAddr)
         
+        i2cBus.write_byte_data(accelAddr, enableControl, enableMeasure)
+        i2cBus.write_byte_data(magAddr, enableControl, enableMeasure)
+        i2cBus.write_byte_data(pressAddr, enableControl, enableMeasure)
+        i2cBus.write_byte_data(humidAddr, enableControl, enableMeasure)
+
     def run(self):
         while True:
             if self.enableEmulator:

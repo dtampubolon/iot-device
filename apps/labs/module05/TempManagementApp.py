@@ -31,6 +31,6 @@ tempSA.start()
 Run app indefinitely
 '''
 while (True):
-    DU.jsonToSensorData(r'C:\Users\Doni Tampubolon\Documents\Grad School\CSYE6530\gitrepo\iot-device\apps\labs\data\Data.json')
+    #DU.jsonToSensorData(r'C:\Users\Doni Tampubolon\Documents\Grad School\CSYE6530\gitrepo\iot-device\apps\labs\data\Data.json')
     sleep(5)
     pass
