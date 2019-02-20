@@ -8,7 +8,7 @@ CSYE6530 - Connected Devices
 import os
 
 from datetime import datetime
-from ctypes.test.test_pickling import name
+#from ctypes.test.test_pickling import name
 
 COMMAND_OFF = 0
 COMMAND_ON = 1
@@ -27,8 +27,8 @@ class ActuatorData():
     This class contains the appropriate data to signal a temperature increase
     or decrease request
     '''
-    timeStamp = None
-    name = 'Actuator Name Not set'
+    #timeStamp = None
+    #name = 'Actuator Name'
     #hasError = False
     #command = 0 #0 to keep temp, 1 to lower temp, 2 to raise temp
     #errCode = 0 
@@ -41,7 +41,7 @@ class ActuatorData():
         Constructor
         '''
         self.updateTimeStamp()
-        self.name = name
+        self.name = 'Actuator Test'
         self.hasError = False
         self.command = 0
         self.errCode = 0

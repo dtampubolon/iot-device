@@ -7,12 +7,11 @@ based on lab module 2 guide
 '''
 import os
 from datetime import datetime
-from ctypes.test.test_pickling import name
 
 class SensorData():
     
-    timeStamp = None #Time when an action is done
-    name = 'Temperature Data'
+    #timeStamp = None #Time when an action is done
+    #name = 'Temperature Data'
     #curValue = 0 #Current value of reading
     #avgValue = 0 #Average value of readings
     #minValue = 0 #Minimum value of readings
@@ -29,7 +28,7 @@ class SensorData():
         Constructor
         '''
         self.timeStamp = str(datetime.now())
-        self.name = name
+        self.name = 'Temperature Sensor'
         self.curValue = 0
         self.avgValue = 0
         self.minValue = 0

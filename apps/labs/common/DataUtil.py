@@ -41,7 +41,7 @@ class DataUtil():
             self.isLoaded = True
                 
     '''
-    This method converts from JSON into an ActuatorData object
+    This method converts JSON into an ActuatorData object
     '''
     def jsonToActuatorData(self, dataFile):
         with open(dataFile, encoding='utf-8') as jsonData:
@@ -64,7 +64,7 @@ class DataUtil():
         return ad
     
     '''
-    This method converts from JSON into a SensorData object
+    This method converts JSON into a SensorData object
 
     '''
     def jsonToSensorData(self, dataFile):
