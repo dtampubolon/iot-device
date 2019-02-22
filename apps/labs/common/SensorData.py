@@ -32,6 +32,7 @@ class SensorData():
         self.curValue = 0
         self.avgValue = 0
         self.minValue = 0
+        self.maxValue = 0
         self.totValue = 0
         self.sampleCount = 0
         

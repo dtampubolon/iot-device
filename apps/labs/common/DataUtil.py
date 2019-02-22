@@ -97,6 +97,12 @@ class DataUtil():
         print("Converting ActuatorData:" + str(actuatorData) + " to JSON...")
         jsonOut = json.dumps(actuatorData.__dict__)
         
+        #writing to dataFile
+        with open(self.dataFile, "w") as outputFile:
+            print(jsonOut, file = outputFile)
+        
+        return jsonOut
+    
         return jsonOut
     '''
     This method converts an ActuatorData object into JSON string
@@ -108,4 +114,8 @@ class DataUtil():
         print("Converting SensorData: " + str(sensorData.name) + " to JSON...")
         jsonOut = json.dumps(sensorData.__dict__)   
 
+        #writing to dataFile
+        with open(self.dataFile, "w") as outputFile:
+            print(jsonOut, file = outputFile)
+        
         return jsonOut

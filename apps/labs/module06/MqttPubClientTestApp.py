@@ -6,26 +6,50 @@ Created on Feb 19, 2019
 
 from labs.module06 import MqttClientConnector
 from labs.common import SensorData
+from labs.common.DataUtil import DataUtil
 
-class MqttPubClientTestApp(object):
+class MqttPubClientTestApp():
     '''
     Instances of this class publish messages to a connected MQTT broker
     MQTT broker will then publish them to subscribed clients
     '''
 
-    def __init__(self, params):
+    def __init__(self):
         '''
         Constructor
         '''
-        self.topic = "Test-CSYE6530"
+        self.topic = "Topic-CSYE6530"
         self.payload = "This is a test"
-        self.name = "Client1"
-        self.connector = MqttClientConnector.MqttClientConnector(self.name)
+        self.name = "Publisher"
+        self.connector = MqttClientConnector.MqttClientConnector("CSYE6530-Publisher")
         self.sensorData = SensorData.SensorData()
+        self.dataUtil = DataUtil(r'C:\Users\Doni Tampubolon\Documents\Grad School\CSYE6530\gitrepo\iot-device\apps\labs\data\test.json')
+       
+if __name__ == '__main__':
+    #Create Test app instance
+    PubClientApp = MqttPubClientTestApp()
     
-    def main(self):
-        self.connector.connect()
-        self.connector.start()
+    #Converting sensorData to JSON
+    jsonData = PubClientApp.dataUtil.sensorDataToJson(PubClientApp.sensorData)
+    print("Conversion to JSON result: " + jsonData)
         
-    if __name__ == '__main__':
-        main()
+    #Adding test values to sensorData
+    PubClientApp.sensorData.addValue(31.8)
+    PubClientApp.sensorData.addValue(23.5)
+    PubClientApp.sensorData.addValue(22.1)
+    PubClientApp.sensorData.addValue(25.5)
+    PubClientApp.sensorData.addValue(26.9)
+    
+    PubClientApp.payload = jsonData
+    
+    #Connect to MQTT broker 
+    PubClientApp.connector.connect()
+    
+    #publishing data to MQTT broker
+    PubClientApp.connector.publish(PubClientApp.topic, PubClientApp.payload)
+    PubClientApp.connector.run()
+    
+    print("End of app")
+
+    
+   
