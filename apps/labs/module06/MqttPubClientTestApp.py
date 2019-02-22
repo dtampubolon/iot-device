@@ -23,15 +23,11 @@ class MqttPubClientTestApp():
         self.name = "Publisher"
         self.connector = MqttClientConnector.MqttClientConnector("CSYE6530-Publisher")
         self.sensorData = SensorData.SensorData()
-        self.dataUtil = DataUtil(r'C:\Users\Doni Tampubolon\Documents\Grad School\CSYE6530\gitrepo\iot-device\apps\labs\data\test.json')
+        self.dataUtil = DataUtil(r'C:\Users\Doni Tampubolon\Documents\Grad School\CSYE6530\gitrepo\iot-device\apps\labs\data\publisher.json')
        
 if __name__ == '__main__':
     #Create Test app instance
     PubClientApp = MqttPubClientTestApp()
-    
-    #Converting sensorData to JSON
-    jsonData = PubClientApp.dataUtil.sensorDataToJson(PubClientApp.sensorData)
-    print("Conversion to JSON result: " + jsonData)
         
     #Adding test values to sensorData
     PubClientApp.sensorData.addValue(31.8)
@@ -40,16 +36,20 @@ if __name__ == '__main__':
     PubClientApp.sensorData.addValue(25.5)
     PubClientApp.sensorData.addValue(26.9)
     
+    #Converting sensorData to JSON
+    jsonData = PubClientApp.dataUtil.sensorDataToJson(PubClientApp.sensorData)
+    print("Conversion to JSON result: " + jsonData)
+    
     PubClientApp.payload = jsonData
     
     #Connect to MQTT broker 
-    PubClientApp.connector.connect()
+    PubClientApp.connector.connect("iot.eclipse.org",1883,20)
     
     #publishing data to MQTT broker
     PubClientApp.connector.publish(PubClientApp.topic, PubClientApp.payload)
     PubClientApp.connector.run()
     
-    print("End of app")
+    print("End of Phyton Publisher app")
 
     
    

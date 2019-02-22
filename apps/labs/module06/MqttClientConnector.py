@@ -17,13 +17,13 @@ class MqttClientConnector(mqtt.Client):
         super().__init__(clientId)
         self.payload = None
        
-    def connect(self, hostname="iot.eclipse.org", port=1883):
+    def connect(self, hostname="iot.eclipse.org", port=1883, keepAlive=60):
         self.hostname = hostname
         self.port = port
         
         print("Connecting to " + hostname)
         
-        super().connect(hostname, port)
+        super().connect(hostname, port, keepAlive)
     
     def run(self, runTime=65):   
         '''
@@ -51,7 +51,7 @@ class MqttClientConnector(mqtt.Client):
         if rc == 0:
             print("Connection successful!\tReturned code: " + str(rc))
         else:
-           print("Connection unsuccessful\tReturned code:" + rc)
+            print("Connection unsuccessful\tReturned code:" + rc)
     
     '''
     This function is called when the client disconnects form the server

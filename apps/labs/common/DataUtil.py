@@ -71,7 +71,7 @@ class DataUtil():
         with open(dataFile, encoding='utf-8') as jsonData:
             sdDict = json.loads(jsonData.read())
         
-        print(" decode [pre] --> " + str(sdDict))
+        #print(" decode [pre] --> " + str(sdDict))
         
         sd = SensorData.SensorData()
         sd.name = sdDict['name']
@@ -83,7 +83,7 @@ class DataUtil():
         sd.totValue = sdDict['totValue']
         sd.sampleCount = sdDict['sampleCount']
         
-        print(" decode [post] --> " + str(sd))
+        #print(" decode [post] --> " + str(sd))
         
         return sd
     
@@ -101,8 +101,6 @@ class DataUtil():
         with open(self.dataFile, "w") as outputFile:
             print(jsonOut, file = outputFile)
         
-        return jsonOut
-    
         return jsonOut
     '''
     This method converts an ActuatorData object into JSON string

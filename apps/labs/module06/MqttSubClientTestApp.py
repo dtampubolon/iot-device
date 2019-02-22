@@ -18,11 +18,14 @@ class MqttSubClientTestApp():
         self.topic = "Topic-CSYE6530"
         self.payload = "This is a test"
         self.name = "Subscriber"
+        self.dataFile = r'C:\Users\Doni Tampubolon\Documents\Grad School\CSYE6530\gitrepo\iot-device\apps\labs\data\received-data.json'
         self.connector = MqttClientConnector.MqttClientConnector("CSYE6530-Subscriber")
         self.sensorData = SensorData.SensorData()
-        self.dataUtil = DataUtil(r'C:\Users\Doni Tampubolon\Documents\Grad School\CSYE6530\gitrepo\iot-device\apps\labs\data\test2.json')       
+        self.dataUtil = DataUtil(self.dataFile)       
 
 if __name__ == '__main__':
+    
+    print("Running subscriber...\n")
     #Create app instance
     subApp = MqttSubClientTestApp()
     
@@ -32,12 +35,17 @@ if __name__ == '__main__':
     #Subscribing to a topic
     subApp.connector.subscribe(subApp.topic, 2)
     
-    subApp.connector.run(120)
+    subApp.connector.run(30)
     
     #Get data from subscription
     if(subApp.connector.payload != None):
         jsonData = subApp.connector.payload.decode()
         print("Received JSON string: " + jsonData)
-    
-    #Convert received JSON string to SensorData
+        with open(subApp.dataFile,"w") as outFile:
+            print(jsonData, file = outFile)
         
+    #Convert received JSON string to SensorData
+        subApp.sensorData = subApp.dataUtil.jsonToSensorData(subApp.dataFile)
+        
+    #Convert reconstituted SensorData back to JSON String
+        print(subApp.dataUtil.sensorDataToJson(subApp.sensorData))
