@@ -46,6 +46,7 @@ if __name__ == '__main__':
     PubClientApp.connector.connect("iot.eclipse.org",1883,20)
     
     #publishing data to MQTT broker
+    print(PubClientApp.name + " publishing data to broker...")
     PubClientApp.connector.publish(PubClientApp.topic, PubClientApp.payload)
     PubClientApp.connector.run()
     
