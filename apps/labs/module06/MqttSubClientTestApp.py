@@ -17,7 +17,7 @@ class MqttSubClientTestApp():
         '''
         self.topic = "Topic-CSYE6530"
         self.payload = "This is a test"
-        self.name = "Subscriber"
+        self.name = "CSYE6530PythonSubscriber"
         self.dataFile = r'C:\Users\Doni Tampubolon\Documents\Grad School\CSYE6530\gitrepo\iot-device\apps\labs\data\received-data.json'
         self.connector = MqttClientConnector.MqttClientConnector("CSYE6530-Subscriber")
         self.sensorData = SensorData.SensorData()

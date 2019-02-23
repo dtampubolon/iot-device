@@ -20,7 +20,7 @@ class MqttPubClientTestApp():
         '''
         self.topic = "Topic-CSYE6530"
         self.payload = "This is a test"
-        self.name = "Publisher"
+        self.name = "CSYE6530PythonPublisher"
         self.connector = MqttClientConnector.MqttClientConnector("CSYE6530-Publisher")
         self.sensorData = SensorData.SensorData()
         self.dataUtil = DataUtil(r'C:\Users\Doni Tampubolon\Documents\Grad School\CSYE6530\gitrepo\iot-device\apps\labs\data\publisher.json')
