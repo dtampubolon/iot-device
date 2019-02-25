@@ -34,8 +34,7 @@ if __name__ == '__main__':
     
     #Subscribing to a topic
     subApp.connector.subscribe(subApp.topic, 2)
-    
-    subApp.connector.run(30)
+    subApp.connector.run(65)
     
     #Get data from subscription
     if(subApp.connector.payload != None):
@@ -49,3 +48,9 @@ if __name__ == '__main__':
         
     #Convert reconstituted SensorData back to JSON String
         print(subApp.dataUtil.sensorDataToJson(subApp.sensorData))
+        
+    #Unsubscribe from topic
+    subApp.connector.unsubscribe(subApp.topic)
+    
+    #Disconnect from broker
+    subApp.connector.disconnect()

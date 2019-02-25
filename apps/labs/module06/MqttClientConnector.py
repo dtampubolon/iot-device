@@ -83,7 +83,7 @@ class MqttClientConnector(mqtt.Client):
     #This function is called when unsubscription is done
     def on_unsubscribe(self, client, userdata, mid):
         print("Unsubscribed successfully")
-    
+        
     '''
     #This function is called when the client has log information for debugging
     def on_log(self, client, userdata, level, buf):

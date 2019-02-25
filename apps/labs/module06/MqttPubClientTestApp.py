@@ -43,12 +43,12 @@ if __name__ == '__main__':
     PubClientApp.payload = jsonData
     
     #Connect to MQTT broker 
-    PubClientApp.connector.connect("iot.eclipse.org",1883,20)
+    PubClientApp.connector.connect("iot.eclipse.org",1883)
     
     #publishing data to MQTT broker
     print(PubClientApp.name + " publishing data to broker...")
     PubClientApp.connector.publish(PubClientApp.topic, PubClientApp.payload)
-    PubClientApp.connector.run()
+    PubClientApp.connector.run(100)
     
     print("End of Phyton Publisher app")
 
