@@ -16,7 +16,13 @@ class MqttClientConnector(mqtt.Client):
     def __init__(self,clientId=""):
         super().__init__(clientId)
         self.payload = None
-       
+    
+    '''
+    This function is used to connect to the MQTT broker
+    @param hostname: String url of broker
+    @param port: int port number
+    @param keepAlive: int time in seconds the connection is kept open
+    '''      
     def connect(self, hostname="iot.eclipse.org", port=1883, keepAlive=60):
         self.hostname = hostname
         self.port = port
@@ -25,6 +31,11 @@ class MqttClientConnector(mqtt.Client):
         
         super().connect(hostname, port, keepAlive)
     
+    '''
+    This function is used to run the loop to ensure communication with the
+        broker is carried out. It processes incoming and outgoing data
+    @param runTime: int the amount of time in seconds the loop is run
+    '''
     def run(self, runTime=65):   
         '''
         rc = 0
@@ -80,12 +91,12 @@ class MqttClientConnector(mqtt.Client):
         print("Subscription successful..")
         print("Message id: " + str(mid) + "\tGranted QoS: " + str(granted_qos))
     
-    #This function is called when unsubscription is done
+    #This function is called when the broker responds to an unsubscribe request.
     def on_unsubscribe(self, client, userdata, mid):
         print("Unsubscribed successfully")
         
-    '''
+    
     #This function is called when the client has log information for debugging
     def on_log(self, client, userdata, level, buf):
         print(buf)
-    '''
+    
