@@ -97,6 +97,6 @@ class MqttClientConnector(mqtt.Client):
         
     
     #This function is called when the client has log information for debugging
-    def on_log(self, client, userdata, level, buf):
-        print(buf)
+    #def on_log(self, client, userdata, level, buf):
+    #    print(buf)
     
