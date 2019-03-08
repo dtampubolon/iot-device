@@ -11,7 +11,7 @@ from labs.common import ConfigConst
 from coapthon.client.helperclient import HelperClient
 from coapthon.utils import parse_uri
 
-class CoapClientConnector():
+class CoapClientConnector(object):
     '''
     classdocs
     '''
@@ -33,7 +33,6 @@ class CoapClientConnector():
         else:
             self.port = ConfigConst.DEFAULT_COAP_PORT
         
-        self.client = None
         self.client = HelperClient(server=(self.host,self.port))
 
         self.response = ""
@@ -50,6 +49,7 @@ class CoapClientConnector():
         self.payload = payload
         host, port, path = parse_uri(uri)
         response = self.client.put(path, payload)
+        print("\nResponse from server:")
         print((response.pretty_print()))
         self.client.stop()
         
@@ -77,9 +77,13 @@ class CoapClientConnector():
     
     def sendDiscoverRequest(self):
         response = self.client.discover()
+        print("\nResponse from server:")
         print(response.pretty_print())
+        print("Stopping Client...")
         self.client.stop()
-        
+    
+    def stopClient(self):
+        self.client.stop()
 '''
 Callback functions
 '''

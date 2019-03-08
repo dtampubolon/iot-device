@@ -5,6 +5,8 @@ Created on Mar 7, 2019
 '''
 from coapthon.server.coap import CoAP
 from labs.common import ConfigConst
+from labs.module07.TempResourceHandler import TempResourceHandler
+
 class CoapServerConnector():
     '''
     This class is used to connect to 
@@ -18,15 +20,17 @@ class CoapServerConnector():
         self.port = port
         self.multicast = multicast
         print("Starting CoAP Server: " + host + ":" + str(port))
-        print(self.root.dump())
         self.server = None
-        #self.tempResourceHandler = TempResourceHandler()
-        
+                
     def start(self, timeout = 60):
         print("Starting CoAP Server: " + self.host + ":" + str(self.port))
+        
         if self.server is None:
             self.server = CoAP((self.host, self.port), self.multicast)
-        print(self.root.dump())
+        
+        self.addResource("json/", TempResourceHandler("JSensorData"))
+        print("Root dir:" + str(self.server.root.dump()))
+
         try:
             self.server.listen(timeout)
         except KeyboardInterrupt:
@@ -42,6 +46,7 @@ class CoapServerConnector():
             
     def addResource(self, path, resource):
         if self.server is None:
-            print("No server is running")
+            print("No server is running to add resource to")
         else:
+            print("Adding resource: " + resource.name)
             self.server.add_resource(path, resource)
