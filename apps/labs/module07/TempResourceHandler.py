@@ -26,15 +26,12 @@ class TempResourceHandler(Resource):
     
     def render_PUT(self, request):
         self.edit_resource(request)
-        print("Resource changed by PUT")
         return self
         
     def render_POST(self, request):
         res = self.init_resource(request, TempResourceHandler)
-        print("Resource changed by POST")
         return res
     
     def render_DELETE(self, request):
-        print("Resource deleted")
         return True
     

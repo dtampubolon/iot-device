@@ -42,7 +42,7 @@ class CoapClientConnector(object):
         host, port, path = parse_uri(uri)
         response = self.client.get(path)
         print(response.pretty_print())
-        self.client.stop()
+        #self.client.stop()
         
     def sendPutRequest(self, uri, payload):
         self.uri = uri
@@ -51,7 +51,7 @@ class CoapClientConnector(object):
         response = self.client.put(path, payload)
         print("\nResponse from server:")
         print((response.pretty_print()))
-        self.client.stop()
+        #self.client.stop()
         
     def sendPostRequest(self, uri, payload):
         self.uri = uri
@@ -59,13 +59,14 @@ class CoapClientConnector(object):
         host, port, path = parse_uri(uri)
         response = self.client.post(path, payload)
         print((response.pretty_print()))
-        self.client.stop()
+        #self.client.stop()
                 
     def sendDeleteRequest(self, uri):
         self.uri = uri
         host, port, path = parse_uri(uri)
         response = self.client.delete(path)
         print(response.pretty_print())
+        #self.client.stop()
         
     def sendObserveRequest(self, uri):
         self.uri = uri
@@ -80,7 +81,7 @@ class CoapClientConnector(object):
         print("\nResponse from server:")
         print(response.pretty_print())
         print("Stopping Client...")
-        self.client.stop()
+        #self.client.stop()
     
     def stopClient(self):
         self.client.stop()
