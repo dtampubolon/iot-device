@@ -29,7 +29,7 @@ class TempResourceHandler(Resource):
         return self
         
     def render_POST(self, request):
-        res = self.init_resource(request, TempResourceHandler)
+        res = self.init_resource(request, TempResourceHandler())
         return res
     
     def render_DELETE(self, request):
