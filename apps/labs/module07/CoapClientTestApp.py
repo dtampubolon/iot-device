@@ -37,7 +37,6 @@ if __name__ == '__main__':
     jsonData = clientApp.du.sensorDataToJson(clientApp.sd)
     print("Client SensorData JSON before transmission to server:")
     print(jsonData)
-    
     #Send DISCOVER request
     #clientApp.connector.sendDiscoverRequest()
     
