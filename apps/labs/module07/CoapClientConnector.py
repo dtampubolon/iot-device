@@ -41,6 +41,7 @@ class CoapClientConnector(object):
         self.uri = uri
         host, port, path = parse_uri(uri)
         response = self.client.get(path)
+        print("\nResponse from server:")
         print(response.pretty_print())
         #self.client.stop()
         

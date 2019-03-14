@@ -42,8 +42,9 @@ if __name__ == '__main__':
     #clientApp.connector.sendDiscoverRequest()
     
     #Send PUT request
-    clientApp.connector.sendPutRequest("coap://127.0.0.1:5683/json/data.json", jsonData)
+    clientApp.connector.sendPutRequest("coap://127.0.0.1:5683/json", jsonData)
+    clientApp.connector.sendGetRequest("coap://127.0.0.1:5683/json")
     #clientApp.connector.sendDiscoverRequest()
-        
+
     #Stop client
     clientApp.connector.stopClient()
