@@ -19,7 +19,6 @@ class CoapServerConnector():
         self.host = host
         self.port = port
         self.multicast = multicast
-        print("Starting CoAP Server: " + host + ":" + str(port))
         self.server = None
                 
     def start(self, timeout = 60):

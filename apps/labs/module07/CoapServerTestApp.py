@@ -22,5 +22,5 @@ class CoapServerTestApp():
 if __name__ == '__main__':
     #Creating Server App instance
     serverApp = CoapServerTestApp()
-    serverApp.connector.start(60)
+    serverApp.connector.start(6000)
     
