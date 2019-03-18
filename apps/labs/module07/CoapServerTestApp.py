@@ -9,10 +9,9 @@ from labs.module07.CoapServerConnector import CoapServerConnector
 
 class CoapServerTestApp():
     '''
-    classdocs
+    This app is used to test a CoAP server instance
     '''
-
-
+    
     def __init__(self):
         '''
         Constructor
@@ -22,5 +21,7 @@ class CoapServerTestApp():
 if __name__ == '__main__':
     #Creating Server App instance
     serverApp = CoapServerTestApp()
+    
+    #Start CoAP server, keep alive for 100 minutes
     serverApp.connector.start(6000)
     

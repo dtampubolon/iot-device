@@ -9,9 +9,8 @@ from labs.common.DataUtil import DataUtil
 
 class CoapClientTestApp():
     '''
-    classdocs
+    This class creates a CoAP client instance and connects to a CoAP server
     '''
-
 
     def __init__(self):
         '''
@@ -42,8 +41,8 @@ if __name__ == '__main__':
     
     #Send PUT request
     clientApp.connector.sendPostRequest("coap://127.0.0.1:5683/json", jsonData)
-    clientApp.connector.sendGetRequest("coap://127.0.0.1:5683/json")
+    #clientApp.connector.sendGetRequest("coap://127.0.0.1:5683/json")
     #clientApp.connector.sendDiscoverRequest()
-
+    
     #Stop client
     clientApp.connector.stopClient()
