@@ -33,7 +33,9 @@ class MqttClientConnector(mqtt.Client):
     
     '''
     This function is used to run the loop to ensure communication with the
-        broker is carried out. It processes incoming and outgoing data
+    broker is carried out. It processes incoming and outgoing data.
+    The loop must be kept running longer than the connection keepAlive time to make sure all packets from the broker are received
+    i.e. runTime > keepAlive
     @param runTime: int the amount of time in seconds the loop is run
     '''
     def run(self, runTime=65):   
