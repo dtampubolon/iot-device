@@ -18,7 +18,7 @@ class CoapServerConnector():
         '''
         self.host = host
         self.port = port
-        self.multicast = multicast
+        #self.multicast = multicast
         self.server = None
                 
     '''
@@ -28,8 +28,7 @@ class CoapServerConnector():
         print("Starting CoAP Server: " + self.host + ":" + str(self.port))
         
         if self.server is None:
-            self.server = CoAP((self.host, self.port), self.multicast)
-        
+            self.server = CoAP((self.host, self.port))
         self.addResource("json/", TempResourceHandler("JSensorData"))
         print("Root dir:" + str(self.server.root.dump()))
 
