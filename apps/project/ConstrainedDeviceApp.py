@@ -10,6 +10,7 @@ from time import sleep
 from project import PitchAdaptor
 from labs.module06 import MqttClientConnector
 from labs.common import DataUtil
+from labs.common.PitchData import PitchData
 
 #pitch adaptor configuration
 pitchAdaptor = PitchAdaptor.PitchAdaptor()
@@ -35,7 +36,9 @@ while(True):
     if(curVal<=threshold):
         #Sends MQTT message to alert the gateway device which is subscribed to the topic if the pitch is below the threshold
         print("WARNING: current pitch is below threshold, sending alert to gateway\n")
-        payload = dataUtil.pitchDataToJson(pitch)
+        pd = PitchData()
+        pd.setValue(curVal)
+        payload = dataUtil.pitchDataToJson(pd)
         connector.publish(topic, payload)
     else:
         sleep(1)

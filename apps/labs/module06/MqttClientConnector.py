@@ -86,7 +86,7 @@ class MqttClientConnector(mqtt.Client):
     
     #This function is called when a message is published    
     def on_publish(self, client, userdata, mid):
-        print("A message has been successfully published")
+        print("A message has been successfully published\n")
         print("mid " + str(mid))
     
     #This function is called when a new subscription is made    
