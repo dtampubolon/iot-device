@@ -7,6 +7,7 @@ import os
 import json
 from labs.common import ActuatorData
 from labs.common import SensorData
+from labs.common import PitchData
 
 class DataUtil():
     '''
@@ -16,7 +17,7 @@ class DataUtil():
     dataFile = dataPath + '\\' +  'Data.json' #File that contains json string
     isLoaded   = False
     
-    def __init__(self, dataFile):
+    def __init__(self, dataFile = None):
         '''
         Constructor for DataUtil
         '''
@@ -70,8 +71,8 @@ class DataUtil():
     def jsonToSensorData(self, dataFile):
         with open(dataFile, encoding='utf-8') as jsonData:
             sdDict = json.loads(jsonData.read())
-        
-        #print(" decode [pre] --> " + str(sdDict))
+
+        print(" decode [pre] --> " + str(sdDict))
         
         sd = SensorData.SensorData()
         sd.name = sdDict['name']
@@ -88,6 +89,23 @@ class DataUtil():
         return sd
     
     '''
+    This method converts JSON into an PitchData object
+    '''
+    def jsonToPitchData(self, dataFile):
+        with open(dataFile, encoding='utf-8') as jsonData:
+            pdDict = json.loads(jsonData.read())
+        
+        #print(" decode [pre] --> " + str(pdDict))
+        
+        pd = PitchData.PitchData()
+        pd.name = pdDict['name']
+        pd.curValue = pdDict['curValue']
+        
+        #print(" decode [post] --> "+ str(pd))
+        
+        return pd
+        
+    '''
     This method converts an ActuatorData object into JSON string
     JSON string is written to a file specified by dataFile
     
@@ -103,7 +121,7 @@ class DataUtil():
         
         return jsonOut
     '''
-    This method converts an ActuatorData object into JSON string
+    This method converts a SensorData object into JSON string
     JSON string is written to a file specified by dataFile
     
     @param SensorData object to be converted
@@ -116,4 +134,21 @@ class DataUtil():
         with open(self.dataFile, "w") as outputFile:
             print(jsonOut, file = outputFile)
         
+        return jsonOut
+    
+    '''
+    This method converts a PitchData object into JSON string
+    JSON string is written to a file specified by dataFile
+    
+    @param SensorData object to be converted
+    '''    
+    def pitchDataToJson(self, pitchData):
+        print("Converting PitchData: " + str(pitchData.name) + " to JSON...")
+        jsonOut = json.dumps(pitchData.__dict__)   
+
+        #writing to dataFile
+        '''
+        with open(self.dataFile, "w") as outputFile:
+            print(jsonOut, file = outputFile)
+        '''
         return jsonOut

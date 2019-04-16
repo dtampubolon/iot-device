@@ -29,7 +29,7 @@ class TempSensorAdaptor(threading.Thread):
         Constructor
         '''
         threading.Thread.__init__(self)
-        self.connector = connector
+        self.connector = connector #SMTP connector
         self.period = period #time interval in seconds
         self.threshold = threshold #Threshold that triggers app to send an alert to user
         self.enable = False

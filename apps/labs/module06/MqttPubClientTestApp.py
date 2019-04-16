@@ -8,6 +8,8 @@ from labs.module06 import MqttClientConnector
 from labs.common import SensorData
 from labs.common.DataUtil import DataUtil
 
+import time
+
 class MqttPubClientTestApp():
     '''
     Instances of this class publish messages to a connected MQTT broker
@@ -21,7 +23,7 @@ class MqttPubClientTestApp():
         self.topic = "Topic-CSYE6530"
         self.payload = "This is a test"
         self.name = "CSYE6530PythonPublisher"
-        self.connector = MqttClientConnector.MqttClientConnector("CSYE6530-Publisher")
+        self.connector = MqttClientConnector.MqttClientConnector(self.name)
         self.sensorData = SensorData.SensorData()
         self.dataUtil = DataUtil(r'C:\Users\Doni Tampubolon\Documents\Grad School\CSYE6530\gitrepo\iot-device\apps\labs\data\publisher.json')
        
@@ -46,9 +48,12 @@ if __name__ == '__main__':
     PubClientApp.connector.connect("iot.eclipse.org",1883)
     
     #publishing data to MQTT broker
-    print(PubClientApp.name + " publishing data to broker...")
-    PubClientApp.connector.publish(PubClientApp.topic, PubClientApp.payload)
-    PubClientApp.connector.run(100)
+    print(PubClientApp.connector.clientId + " publishing data to broker...")
+    PubClientApp.connector.loop_start()
+    while True:
+        PubClientApp.connector.publish(PubClientApp.topic, PubClientApp.payload)
+        time.sleep(3)
+    #PubClientApp.connector.run(100)
     
     print("End of Phyton Publisher app")
 

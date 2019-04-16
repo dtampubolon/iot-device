@@ -39,7 +39,14 @@ class SenseHat():
     def get_pressure(self):
         # NOTE: This is just a sample
         return round(uniform(1020.0, 1035.0), 2)
-            
+    
+    def get_orientation(self):
+        pitch = round(uniform(305,360), 2)
+        roll = round(uniform(0,360), 2)
+        yaw = round(uniform(0,360), 2)
+
+        return { "pitch": pitch, "roll": roll, "yaw": yaw}        
+    
     def set_rotation(self, rotateDeg):
         self.rotateDeg = rotateDeg
     

@@ -16,6 +16,7 @@ class MqttClientConnector(mqtt.Client):
     def __init__(self,clientId=""):
         super().__init__(clientId)
         self.payload = None
+        self.clientId = clientId
     
     '''
     This function is used to connect to the MQTT broker

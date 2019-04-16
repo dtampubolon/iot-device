@@ -34,7 +34,7 @@ if __name__ == '__main__':
     
     #Subscribing to a topic
     subApp.connector.subscribe(subApp.topic, 2)
-    subApp.connector.run(65)
+    subApp.connector.run(120)
     
     #Get data from subscription
     if(subApp.connector.payload != None):
