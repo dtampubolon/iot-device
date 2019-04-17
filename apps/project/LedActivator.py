@@ -29,7 +29,8 @@ class LedActivator():
     def setLED(self, enable):
         if(enable):
             self.sh.show_letter('*')
-            self.sh.show_message('Valve ON')
+            print("Valve ON")
         else:
             self.sh.clear()
+            print("Valve OFF")
         
