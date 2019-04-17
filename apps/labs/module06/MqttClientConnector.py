@@ -8,6 +8,9 @@ CSYE 6530 -Connected Devices
 import paho.mqtt.client as mqtt
 import time
 
+import sys
+sys.path.append('/home/pi/workspace/iot-device/apps')
+
 class MqttClientConnector(mqtt.Client):
     '''
     This class sets up and manages the connection between a client and a server(broker)

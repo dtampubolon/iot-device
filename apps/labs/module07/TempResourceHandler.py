@@ -31,7 +31,7 @@ class TempResourceHandler(Resource):
     This function is called when a PUT request is received
     '''
     def render_PUT(self, request):
-       #print("Received payload: " +str(request.payload))
+        print("Received payload: " +str(request.payload))
         self.edit_resource(request)
         return self
     
