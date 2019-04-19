@@ -47,7 +47,9 @@ pitchAdaptor.daemon = True
 pitchAdaptor.setEnable(True)
 pitchAdaptor.start()
 period = 10 #time interval in seconds to send reading to gateway
-threshold = 310 #Minimum pitch in degrees that triggers app to send current reading to gateway
+minPitch = 310 #Minimum pitch in degrees that triggers app to send current reading to gateway
+normPitch = 345 #Normal pitch, when pitch goes above this angle, valve (LED) is turned off 
+pd = PitchData()
 
 #temperature sensor adaptor configuration
 tempSensorAdaptor = TempSensAdapt.TempSensorAdapt(connector)
@@ -57,6 +59,7 @@ tempSensorAdaptor.start()
 maxTemp = 25
 
 count=0
+oneShot = True;
 
 while(True):
     pitch = pitchAdaptor.getPitchData()
@@ -65,26 +68,33 @@ while(True):
     
     sensorData = tempSensorAdaptor.getSensorData()
     sensorVal = sensorData.getValue()
+    print("Temperature: "  + str(sensorVal))
     
-    if(curVal<=threshold and count%period==0):
-        #Sends MQTT message to alert the gateway device which is subscribed to the topic if the pitch is below the threshold
-        print("ALERT: Pitch angle is below threshold")
-        pd = PitchData()
+    if(curVal<=minPitch and count%period!=0):
+        #Sends MQTT message to alert the gateway device which is subscribed to the topic if the pitch is below the minimum
+        print("ALERT: Pitch angle is below minimum")
         pd.setValue(curVal)
         payload = dataUtil.pitchDataToJson(pd)
         connector.publish(pubTopic, payload)
-
+        oneShot = True
+    
+    elif(curVal > normPitch and count%period!=0 and oneShot):
+        print("ALERT: Pitch angle is in normal range")
+        pd.setValue(curVal)
+        payload = dataUtil.pitchDataToJson(pd)
+        connector.publish(pubTopic, payload)
+        oneShot = False
+        
     elif count%period==0:
-        #Sending new MQTT message every period of seconds if no threshold is exceeded 
-        print("Constrained Device: Sending new pitch reading to gateway..")
-        pd = PitchData()
+        #Sending new MQTT message every period of seconds if no minimum is exceeded 
+        print("Constrained Device: Sending new PITCH reading to gateway..")
         pd.setValue(curVal)
         payload = dataUtil.pitchDataToJson(pd)
         connector.publish(pubTopic, payload)
         
     if(sensorVal<=maxTemp and count%period==0): 
         #Sending new MQTT message every period of seconds if no threshold is exceeded 
-        print("Constrained Device: Sending new temperature reading to gateway..")
+        print("Constrained Device: Sending new TEMPERATURE reading to gateway..")
         payload2 = dataUtil.sensorDataToJson(sensorData)
         connector.publish(pubTopic2, payload2)
         

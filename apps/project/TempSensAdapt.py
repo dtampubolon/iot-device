@@ -52,9 +52,9 @@ class TempSensorAdapt(threading.Thread):
                 self.curTemp = self.sense.get_temperature()
                 self.sensorData.addValue(self.curTemp)
                 
-                print("\n----------")
-                print("New Sensor Readings")
-                print(" " + str(self.sensorData))
+                #print("\n----------")
+                #print("New Sensor Readings")
+                #print(" " + str(self.sensorData))
                 
                 if self.isPrevTempSet == False:
                     self.prevTemp = self.curTemp #Initial temp is set to the first current temp
@@ -63,7 +63,7 @@ class TempSensorAdapt(threading.Thread):
                     if(self.curTemp>=self.threshold):
                         print("ALERT: Temperature exceeds the maximum!")
                         self.connector.publish(self.pubTopic)
-                time.sleep(self.period)
+                time.sleep(self.period) #sleep for 1 second in every loop
                     
     def setEnable(self, enable):
         self.enable = enable
