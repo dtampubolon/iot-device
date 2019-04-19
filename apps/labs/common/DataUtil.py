@@ -5,9 +5,14 @@ Created on Feb 15, 2019
 '''
 import os
 import json
+
+import sys
+sys.path.append('/home/pi/workspace/iot-device/apps')
+
 from labs.common import ActuatorData
 from labs.common import SensorData
 from labs.common import PitchData
+
 
 class DataUtil():
     '''

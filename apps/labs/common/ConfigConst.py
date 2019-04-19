@@ -29,7 +29,8 @@ configuration values or when default values may be needed.
 
 SECTION_SEPARATOR     = '.'
 
-DEFAULT_CONFIG_FILE_NAME = r'C:\Users\Doni Tampubolon\Documents\Grad School\CSYE6530\gitrepo\iot-device\apps\labs\data\ConnectedDevicesConfig.props'
+#DEFAULT_CONFIG_FILE_NAME = r'C:\Users\Doni Tampubolon\Documents\Grad School\CSYE6530\gitrepo\iot-device\apps\labs\data\ConnectedDevicesConfig.props'
+DEFAULT_CONFIG_FILE_NAME = '/home/pi/workspace/iot-device/apps/labs/data/ConnectedDevicesConfig.props'
 
 DEFAULT_HOST          = '127.0.0.1'
 DEFAULT_COAP_PORT     = 5683
