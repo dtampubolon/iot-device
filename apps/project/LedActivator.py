@@ -15,7 +15,7 @@ class LedActivator():
     rotateDeg = 270
     sh = None
     displayMsg = None
-    
+    color = [255,165,0]
     def __init__(self, rotateDeg = 270, rateInSec = 1):
         
         if rateInSec > 0:
@@ -25,10 +25,10 @@ class LedActivator():
             
         self.sh = SenseHat()
         self.sh.set_rotation(self.rotateDeg)
-      
+
     def setLED(self, enable):
         if(enable):
-            self.sh.show_letter('*')
+            self.sh.show_letter('*', self.color)
             print("Valve ON")
         else:
             self.sh.clear()
