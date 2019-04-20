@@ -24,7 +24,7 @@ class TempSensorAdapt(threading.Thread):
     This class reads temperature data from sensehat
     and sends email notifications if changes beyond the threshold occur. 
     '''
-    def __init__(self, connector, period=1, threshold=25):
+    def __init__(self, connector, period=1, threshold=38):
         '''
         Constructor
         '''
