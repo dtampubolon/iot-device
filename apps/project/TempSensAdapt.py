@@ -19,11 +19,11 @@ from labs.common import DataUtil
 from labs.module06 import MqttClientConnector
 from sense_hat import SenseHat
 
+'''
+This class reads temperature data from sensehat
+and sends email notifications if changes beyond the threshold occur. 
+'''
 class TempSensorAdapt(threading.Thread):
-    '''
-    This class reads temperature data from sensehat
-    and sends email notifications if changes beyond the threshold occur. 
-    '''
     def __init__(self, connector, period=1, threshold=38):
         '''
         Constructor
@@ -45,7 +45,12 @@ class TempSensorAdapt(threading.Thread):
         
         self.nominalTemp = float(self.config.getProperty(ConfigConst.CONSTRAINED_DEVICE, ConfigConst.NOMINAL_TEMP_KEY))
         self.dataUtil = DataUtil.DataUtil()
-        
+    
+    '''
+    This function is called when a TempSenseAdapt thread is started
+    This function gets temperature data from sensehat and publishses alert to an MQTT topic
+    This function runs indefinitely
+    '''    
     def run(self):
         while True:
             if self.enable:
@@ -64,9 +69,15 @@ class TempSensorAdapt(threading.Thread):
                         print("ALERT: Temperature exceeds the maximum!")
                         self.connector.publish(self.pubTopic)
                 time.sleep(self.period) #sleep for 1 second in every loop
-                    
+    
+    '''
+    This function enables/disables the run function
+    '''                
     def setEnable(self, enable):
         self.enable = enable
-        
+    
+    '''
+    This function returns the latest sensorData object
+    '''    
     def getSensorData(self):
         return self.sensorData

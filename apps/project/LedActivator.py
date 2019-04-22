@@ -10,12 +10,19 @@ import threading
 import sys
 sys.path.append('/home/pi/workspace/iot-device/apps')
 
+'''
+This class activates LED on SenseHat
+'''
 class LedActivator():
     rateInSec = 1
     rotateDeg = 270
     sh = None
     displayMsg = None
     color = [255,165,0]
+    
+    '''
+    Constructor
+    '''
     def __init__(self, rotateDeg = 270, rateInSec = 1):
         
         if rateInSec > 0:
@@ -25,7 +32,11 @@ class LedActivator():
             
         self.sh = SenseHat()
         self.sh.set_rotation(self.rotateDeg)
-
+    
+    '''
+    This function enables/disables LED
+    @param enable: a boolean 
+    '''
     def setLED(self, enable):
         if(enable):
             self.sh.show_letter('*', self.color)

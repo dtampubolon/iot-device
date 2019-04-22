@@ -1,6 +1,6 @@
 '''
 Created on Apr 15, 2019
-
+This module runs on constrained device app (Raspberry Pi)
 @author: Doni Tampubolon
 '''
 import sys
@@ -81,6 +81,7 @@ while(True):
         oneShot = True
     
     elif(curVal > normPitch and count%period!=0 and oneShot):
+        #Sending new MQTT message ONCE if pitch value is back in the normal range 
         print("ALERT: Pitch angle is in normal range")
         pd.setValue(curVal)
         print(str(curVal) + "degrees")
